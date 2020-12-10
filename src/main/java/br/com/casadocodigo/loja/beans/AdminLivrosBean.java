@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -21,17 +23,23 @@ public class AdminLivrosBean {
 	private LivroDao livroDao;
 	@Inject
 	private AutorDao autorDao;
-	
+	@Inject
+	private FacesContext context;
+
 	private List<Integer> autoresId = new ArrayList<>();
 
 	@Transactional
 	public String salvar() {
-		for (Integer autorId: autoresId) {
+		for (Integer autorId : autoresId) {
 			livro.getAutores().add(new Autor(autorId));
 		}
 		livroDao.salvar(livro);
-		System.out.println("Livro Cadastrado: " + livro);
 		
+		context = FacesContext.getCurrentInstance();
+		
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		context.addMessage(null, new FacesMessage("Livro cadastrado com sucesso!"));
+
 		return "/livros/lista?faces-redirect=true";
 	}
 
