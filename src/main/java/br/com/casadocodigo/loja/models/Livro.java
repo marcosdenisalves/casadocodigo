@@ -11,6 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "livro")
@@ -19,14 +26,24 @@ public class Livro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
+	
+	@NotBlank
 	private String titulo;
+	
 	@Lob
+	@NotBlank
+	@Length(min = 10)
 	private String descricao;
+
+	@DecimalMin("20")
 	private BigDecimal preco;
+
+	@Min(50)
 	private Integer numeroPaginas;
 
+	@NotNull
 	@ManyToMany
+	@Size(min = 1)
 	private List<Autor> autores = new ArrayList<>();
 
 	public Livro() {}
