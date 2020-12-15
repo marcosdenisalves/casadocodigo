@@ -26,13 +26,8 @@ public class AdminLivrosBean {
 	@Inject
 	private FacesContext context;
 
-	private List<Integer> autoresId = new ArrayList<>();
-
 	@Transactional
 	public String salvar() {
-		for (Integer autorId : autoresId) {
-			livro.getAutores().add(new Autor(autorId));
-		}
 		livroDao.salvar(livro);
 		
 		context = FacesContext.getCurrentInstance();
@@ -53,13 +48,5 @@ public class AdminLivrosBean {
 
 	public void setLivro(Livro livro) {
 		this.livro = livro;
-	}
-
-	public List<Integer> getAutoresId() {
-		return autoresId;
-	}
-
-	public void setAutoresId(List<Integer> autoresId) {
-		this.autoresId = autoresId;
 	}
 }
