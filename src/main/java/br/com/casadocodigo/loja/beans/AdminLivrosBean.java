@@ -1,12 +1,13 @@
 package br.com.casadocodigo.loja.beans;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 
 import br.com.casadocodigo.loja.daos.AutorDao;
@@ -25,10 +26,14 @@ public class AdminLivrosBean {
 	private AutorDao autorDao;
 	@Inject
 	private FacesContext context;
+	
+	private Part capaLivro;
 
 	@Transactional
-	public String salvar() {
+	public String salvar() throws IOException {
 		livroDao.salvar(livro);
+		
+		capaLivro.write("/home/denis/Imagens/capa-de-livros/" + capaLivro.getSubmittedFileName());
 		
 		context = FacesContext.getCurrentInstance();
 		
@@ -48,5 +53,13 @@ public class AdminLivrosBean {
 
 	public void setLivro(Livro livro) {
 		this.livro = livro;
+	}
+
+	public Part getCapaLivro() {
+		return capaLivro;
+	}
+
+	public void setCapaLivro(Part capaLivro) {
+		this.capaLivro = capaLivro;
 	}
 }
