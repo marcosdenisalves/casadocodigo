@@ -45,7 +45,7 @@ public class Livro {
 	private Integer numeroPaginas;
 	
 	@Temporal(TemporalType.DATE) 
-	private Calendar dataPublicacao = Calendar.getInstance();
+	private Calendar dataPublicacao;
 
 	@NotNull
 	@ManyToMany
