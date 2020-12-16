@@ -52,6 +52,8 @@ public class Livro {
 	@Size(min = 1)
 	private List<Autor> autores = new ArrayList<>();
 
+	private String capaPath;
+
 	public Livro() {}
 
 	public String getTitulo() {
@@ -101,10 +103,19 @@ public class Livro {
 	public void setDataPublicacao(Calendar dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
 	}
+	
+	public String getCapaPath() {
+		return capaPath;
+	}
 
+	public void setCapaPath(String path) {
+		this.capaPath = path;
+	}
+	
 	@Override
 	public String toString() {
 		return "Livro [id=" + id + ", titulo=" + titulo + ", descricao=" + descricao + ", preco=" + preco
 				+ ", numeroPaginas=" + numeroPaginas + ", autores=" + autores + "]";
 	}
+
 }
