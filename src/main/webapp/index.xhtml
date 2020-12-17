@@ -215,7 +215,7 @@
 	<ul class="vitrineDestaquinho-lista">
 		<ui:repeat var="livro" value="#{homeBean.ultimosLancamentos()}">		
 			<li class="livroNaVitrine vitrineDestaquinho-produto">
-				<a href="https://www.casadocodigo.com.br/products/livro-certificacao-java-associate" class="livroNaVitrine-link"
+				<a href="#{request.contextPath}/detalhe-livro.xhtml?id=#{livro.id}" class="livroNaVitrine-link"
 						title="#{livro.titulo}">
 					<div class="livroNaVitrine-imagemContainer" role="presentation">
 						<img class="livroNaVitrine-imagem" 
@@ -236,7 +236,7 @@
 	<ul class="vitrineDaColecao-lista">
 		<ui:repeat var="livro" value="#{homeBean.demaisLivros()}">		
 			<li class="livroNaVitrine vitrineDaColecao-produto">
-				<a href="https://www.casadocodigo.com.br/products/livro-certificacao-java-associate" class="livroNaVitrine-link" 
+				<a href="#{request.contextPath}/detalhe-livro.xhtml?id=#{livro.id}" class="livroNaVitrine-link" 
 					title="#{livro.titulo}">
 					<div class="livroNaVitrine-imagemContainer" role="presentation">
 						<img class="livroNaVitrine-imagem" 
