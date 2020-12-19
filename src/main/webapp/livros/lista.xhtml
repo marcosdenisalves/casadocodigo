@@ -8,14 +8,30 @@
 
 <h:head>
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style-admin.css" />
 </h:head>
 
-<h:body>	
+<h:body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Casa do Código</a>
+		</div>
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+				<li class="active"><a class="nav-link" href="#">Lista</a></li>
+				<li><h:link value="Cadastro" outcome="form" class="nav-link"/></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+	
+	<div class="container">
+	<h1>Lista de Livros</h1>
 	<h:messages />
 	
 	<h:dataTable var="livro" value="#{adminListaLivrosBean.livros}"
-			class="table table-bordered table-striped">
+			class="table table-bordered table-striped table table-hover">
 		<h:column>
 			<f:facet name="header">Título</f:facet>
 			#{livro.titulo}
