@@ -5,10 +5,17 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-	
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+</h:head>
+
+<h:body>	
+	<div class="container">
 	<h:messages />
 	
-	<h:dataTable var="livro" value="#{adminListaLivrosBean.livros}">
+	<h:dataTable var="livro" value="#{adminListaLivrosBean.livros}"
+			class="table table-bordered table-striped">
 		<h:column>
 			<f:facet name="header">Título</f:facet>
 			#{livro.titulo}
@@ -34,8 +41,9 @@
 		<h:column>
 			<f:facet name="header">Capa Path</f:facet>
 			<img src="#{request.contextPath}/file/#{livro.capaPath}" 
-			height="20%" alt="#{livro.titulo}"/>
+			height="10%" alt="#{livro.titulo}"/>
 		</h:column>
 	</h:dataTable>
-	
+	</div>
+</h:body>
 </html>
