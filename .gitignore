@@ -1,6 +1,6 @@
 # Compiled class file
 *.class
-
+*.settings/org.eclipse.jpt.core.prefs
 # Log file
 *.log
 
