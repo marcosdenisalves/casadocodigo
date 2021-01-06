@@ -9,13 +9,16 @@ import br.com.casadocodigo.loja.models.Livro;
 @Model
 public class LivroDetalheBean {
 
-	private Integer id;
-
-	@Inject
-	private Livro livro;
-
 	@Inject
 	private LivroDao dao;
+	
+	private Livro livro;
+	
+	private Integer id;
+	
+	public void carregaDetalhe() {
+		this.livro = dao.buscarPorId(id);
+	}
 
 	public Integer getId() {
 		return id;
@@ -32,8 +35,13 @@ public class LivroDetalheBean {
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
-
-	public void carregaDetalhe() {
-		this.livro = dao.buscarPorId(id);
-	}
+	
 }
+
+
+
+
+
+
+
+

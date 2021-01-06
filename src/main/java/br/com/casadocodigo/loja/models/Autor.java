@@ -10,11 +10,11 @@ import javax.persistence.Table;
 @Table(name = "autor")
 public class Autor {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String nome;
-
+	
 	public Autor() {}
 	
 	public Autor(Integer id) {
@@ -66,4 +66,5 @@ public class Autor {
 	public String toString() {
 		return "Autor [id=" + id + ", nome=" + nome + "]";
 	}
+	
 }

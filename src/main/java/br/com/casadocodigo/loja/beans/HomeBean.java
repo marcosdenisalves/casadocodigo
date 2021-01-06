@@ -10,7 +10,7 @@ import br.com.casadocodigo.loja.models.Livro;
 
 @Model
 public class HomeBean {
-	
+
 	@Inject
 	private LivroDao dao;
 	
@@ -21,4 +21,15 @@ public class HomeBean {
 	public List<Livro> demaisLivros() {
 		return dao.demaisLivros();
 	}
+	
 }
+
+
+
+
+
+
+
+
+
+

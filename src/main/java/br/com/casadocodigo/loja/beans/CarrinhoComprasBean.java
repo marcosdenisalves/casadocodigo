@@ -14,22 +14,23 @@ import br.com.casadocodigo.loja.models.Livro;
 public class CarrinhoComprasBean {
 
 	@Inject
-	private LivroDao dao;
+	private LivroDao livroDao;
+
 	@Inject
 	private CarrinhoCompras carrinho;
-	
+
 	public String add(Integer id) {
-		Livro livro = dao.buscarPorId(id);
+		Livro livro = livroDao.buscarPorId(id);
 		CarrinhoItem item = new CarrinhoItem(livro);
 		carrinho.add(item);
-		
+
 		return "carrinho?faces-redirect=true";
 	}
-	
+
 	public List<CarrinhoItem> getItens() {
 		return carrinho.getItens();
 	}
-	
+
 	public void remover(CarrinhoItem item) {
 		carrinho.remover(item);
 	}

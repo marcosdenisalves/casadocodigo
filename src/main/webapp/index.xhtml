@@ -169,11 +169,6 @@
 							Web
 						</a>
 					</li>
-					<li class="colecoesDaCDC-colecaoItem">
-						<a href="livros/lista.xhtml" class="colecoesDaCDC-colecaoLink">
-							List
-						</a>
-					</li>
 				
 			</nav>
 			<form role="search" aria-labelledby="rotuloBuscaPrincipal" action="https://www.casadocodigo.com.br/search" method="GET" class="buscaPrincipal">
@@ -196,7 +191,7 @@
 				<img class="cabecalhoPrincipal-iconeItemNavegacao" src="#{request.contextPath}/resources/imagens/search.svg" alt="Ir para ao topo da página" />
 			</a>
 
-			<a tabindex="3" href="https://www.casadocodigo.com.br/cart" title="Ir para sacola de compras" class="sacola cabecalhoPrincipal-itemNavegacao">
+			<a tabindex="3" href="#{request.contextPath}/carrinho.xhtml" title="Ir para sacola de compras" class="sacola cabecalhoPrincipal-itemNavegacao">
 				<svg width="28px" height="34px" viewBox="0 0 28 34" role="img" aria-labelledby="sacolaLabel" class="sacola-icone">
 					<title id="sacolaLabel">
 						Você tem 0 itens na sacola
@@ -218,9 +213,9 @@
 <section class="vitrineDestaquinho container">
 	<h2 class="vitrineDestaquinho-titulo">Últimos lançamentos</h2>
 	<ul class="vitrineDestaquinho-lista">
-		<ui:repeat var="livro" value="#{homeBean.ultimosLancamentos()}">		
+		<ui:repeat value="#{homeBean.ultimosLancamentos()}" var="livro">	
 			<li class="livroNaVitrine vitrineDestaquinho-produto">
-				<a href="#{request.contextPath}/detalhe-livro.xhtml?id=#{livro.id}" class="livroNaVitrine-link"
+				<a href="#{request.contextPath}/livro-detalhe.xhtml?id=#{livro.id}" class="livroNaVitrine-link"
 						title="#{livro.titulo}">
 					<div class="livroNaVitrine-imagemContainer" role="presentation">
 						<img class="livroNaVitrine-imagem" 
@@ -231,6 +226,7 @@
 				</a>
 			</li>
 		</ui:repeat>
+		
 	</ul>
 </section>
 
@@ -239,9 +235,9 @@
 
 <section class="vitrineDaColecao container">
 	<ul class="vitrineDaColecao-lista">
-		<ui:repeat var="livro" value="#{homeBean.demaisLivros()}">		
+		<ui:repeat value="#{homeBean.demaisLivros()}" var="livro">
 			<li class="livroNaVitrine vitrineDaColecao-produto">
-				<a href="#{request.contextPath}/detalhe-livro.xhtml?id=#{livro.id}" class="livroNaVitrine-link" 
+				<a href="#{request.contextPath}/livro-detalhe.xhtml?id=#{livro.id}" class="livroNaVitrine-link" 
 					title="#{livro.titulo}">
 					<div class="livroNaVitrine-imagemContainer" role="presentation">
 						<img class="livroNaVitrine-imagem" 

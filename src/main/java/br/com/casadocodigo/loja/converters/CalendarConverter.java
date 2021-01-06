@@ -10,8 +10,8 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.DateTimeConverter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(forClass = Calendar.class)
-public class CalendarConverter implements Converter{
+@FacesConverter(forClass=Calendar.class)
+public class CalendarConverter implements Converter {
 
 	private DateTimeConverter converter = new DateTimeConverter();
 	
@@ -21,21 +21,30 @@ public class CalendarConverter implements Converter{
 	}
 	
 	@Override
-	public Object getAsObject(FacesContext context, UIComponent component, String dataText) {
-		Date date = (Date) converter.getAsObject(context, component, dataText);
+	public Object getAsObject(FacesContext context, 
+			UIComponent component, String dataTexto) {
+		Date data = (Date) converter.getAsObject(context, component, dataTexto);
 		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
+		calendar.setTime(data);
 		return calendar;
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Object dataObject) {
-		if(dataObject != null)
+	public String getAsString(FacesContext context, 
+			UIComponent component, Object dataObject) {
+		if (dataObject == null) 
 			return null;
 		
 		Calendar calendar = (Calendar) dataObject;
 		return converter.getAsString(
 				context, component, calendar.getTime());
 	}
-	
+
 }
+
+
+
+
+
+
+

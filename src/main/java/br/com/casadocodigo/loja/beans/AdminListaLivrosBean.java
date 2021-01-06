@@ -11,13 +11,26 @@ import br.com.casadocodigo.loja.models.Livro;
 
 @Model
 public class AdminListaLivrosBean {
-	
+
 	@Inject
 	private LivroDao dao;
+	
 	private List<Livro> livros = new ArrayList<>();
-
+	
 	public List<Livro> getLivros() {
-		livros = dao.listaTodos();
+		this.livros = dao.listar();
+		
 		return livros;
 	}
+
 }
+
+
+
+
+
+
+
+
+
+

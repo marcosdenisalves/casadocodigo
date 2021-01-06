@@ -1,12 +1,12 @@
 package br.com.casadocodigo.loja.beans;
 
-import java.io.IOException;
 import java.util.List;
 
-import javax.enterprise.inject.Model;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 
@@ -16,38 +16,40 @@ import br.com.casadocodigo.loja.infra.FileSaver;
 import br.com.casadocodigo.loja.models.Autor;
 import br.com.casadocodigo.loja.models.Livro;
 
-@Model
+@Named
+@RequestScoped
 public class AdminLivrosBean {
-
+	
+	private Livro livro = new Livro();
+	
 	@Inject
-	private Livro livro;
-	@Inject
-	private LivroDao livroDao;
+	private LivroDao dao;
 	@Inject
 	private AutorDao autorDao;
 	@Inject
-	private FacesContext context;
+	private FacesContext context; 
 	
 	private Part capaLivro;
-
+	
 	@Transactional
-	public String salvar() throws IOException {
-		livroDao.salvar(livro);
+	public String salvar() {
 		FileSaver fileSaver = new FileSaver();
-		livro.setCapaPath(fileSaver.write(capaLivro, "capa-de-livros"));
+		String capaPath = fileSaver.write(capaLivro, "livros");
+		livro.setCapaPath(capaPath);
+		dao.salvar(livro);
 		
-		context = FacesContext.getCurrentInstance();
+		context.getExternalContext()
+			.getFlash().setKeepMessages(true);
+		context
+			.addMessage(null, new FacesMessage("Livro cadastrado com sucesso!"));
 		
-		context.getExternalContext().getFlash().setKeepMessages(true);
-		context.addMessage(null, new FacesMessage("Livro cadastrado com sucesso!"));
-
 		return "/livros/lista?faces-redirect=true";
 	}
 
 	public List<Autor> getAutores() {
-		return autorDao.listaTodos();
+		return autorDao.listar();
 	}
-
+	
 	public Livro getLivro() {
 		return livro;
 	}
@@ -63,4 +65,5 @@ public class AdminLivrosBean {
 	public void setCapaLivro(Part capaLivro) {
 		this.capaLivro = capaLivro;
 	}
+
 }
