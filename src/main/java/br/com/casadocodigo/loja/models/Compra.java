@@ -1,5 +1,7 @@
 package br.com.casadocodigo.loja.models;
 
+import java.util.UUID;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +25,13 @@ public class Compra {
 	
 	@Lob
 	private String itens;
+	
+	private	String uuid;
+	
+	@PrePersist
+	public void createUUID() {
+		this.uuid = UUID.randomUUID().toString();
+	}
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -45,5 +55,13 @@ public class Compra {
 	
 	public void setItens(String itens) {
 		this.itens = itens;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 }

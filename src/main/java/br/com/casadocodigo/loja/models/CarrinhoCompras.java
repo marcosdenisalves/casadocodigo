@@ -12,11 +12,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation.Builder;
-import javax.ws.rs.client.WebTarget;
 
 import br.com.casadocodigo.loja.daos.CompraDao;
 
@@ -61,20 +56,9 @@ public class CarrinhoCompras implements Serializable {
 		return itens.stream().mapToInt(item -> item.getQuantidade()).sum();
 	}
 
-	public void finalizar(Usuario usuario) {
-		Compra compra = new Compra();
-		compra.setUsuario(usuario);
+	public void finalizar(Compra compra) {
 		compra.setItens(toJson());
 		compraDao.salvar(compra);
-
-		Client client = ClientBuilder.newClient();
-		Pagamento pagamento = new Pagamento(getTotal());
-		String target = "http://book-payment.herokuapp.com/payment";
-		Entity<Pagamento> json = Entity.json(pagamento);
-		WebTarget webTarget = client.target(target);
-		Builder request = webTarget.request();
-		String response = request.post(json, String.class);
-		System.out.println(response);
 	}
 
 	private String toJson() {
