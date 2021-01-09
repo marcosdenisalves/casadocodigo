@@ -1,5 +1,6 @@
 package br.com.casadocodigo.loja.models;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -22,6 +23,8 @@ public class Compra {
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Usuario usuario;
+	
+	private BigDecimal total;
 	
 	@Lob
 	private String itens;
@@ -63,5 +66,13 @@ public class Compra {
 
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
+	}
+
+	public BigDecimal getTotal() {
+		return total;
+	}
+
+	public void setTotal(BigDecimal total) {
+		this.total = total;
 	}
 }
