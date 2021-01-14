@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 @ApplicationScoped
 public class MailSender {
 
-	@Resource(mappedName = "java:/jboss/mail")
+	@Resource(mappedName = "java:/jboss/mail/gmail")
 	private Session session;
 	
 	public void send(String from, String to, String subject, String body) {
@@ -25,7 +25,7 @@ public class MailSender {
 			
 			Transport.send(msg);
 		} catch (MessagingException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 }
