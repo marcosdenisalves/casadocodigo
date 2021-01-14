@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,12 +18,18 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Cacheable(true)
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 @Table(name = "livro")
 public class Livro {
 
@@ -49,9 +54,11 @@ public class Livro {
 	
 	private String capaPath;
 	
+	@NotNull
 	@ManyToMany
 	@Size(min=1)
-	@NotNull
+	@XmlElement(name="autor")
+	@XmlElementWrapper(name = "autores")
 	private List<Autor> autores = new ArrayList<>();
 	
 	public String getTitulo() {
