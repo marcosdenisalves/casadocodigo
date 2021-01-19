@@ -166,12 +166,13 @@
 							Mobile
 						</a>
 					</li>
-					<c:if test="#{currentUser.hasRole('ADMIN')}" />
-					<li class="colecoesDaCDC-colecaoItem">
-						<a href="#{request.contextPath}/livros/lista.xhtml" class="colecoesDaCDC-colecaoLink">
-							Administração
-						</a>
-					</li>
+					<c:if test="#{currentUser.hasRole('ADMIN')}" >
+						<li class="colecoesDaCDC-colecaoItem">
+							<a href="#{request.contextPath}/livros/lista.xhtml" class="colecoesDaCDC-colecaoLink">
+								Administração
+							</a>
+						</li>
+					</c:if>
 				
 			</nav>
 			<form role="search" aria-labelledby="rotuloBuscaPrincipal" action="https://www.casadocodigo.com.br/search" method="GET" class="buscaPrincipal">
