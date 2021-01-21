@@ -16,14 +16,14 @@
 
 		<h:form enctype="multipart/form-data">
 			<div class="form-group">
-				<h:outputLabel value="Título da Promoção" for="titulo" />
-				<h:inputText value="#{adminPromosBean.promo.titulo}" required="true"
-					id="titulo" styleClass="form-control" />
+				<h:outputLabel value="Título da Promoção" />
+				<h:inputText value="#{adminPromosBean.promo.titulo}" 
+					required="true" id="titulo" styleClass="form-control" />
 				<h:message for="titulo" />
 			</div>
 
 			<div class="form-group">
-				<h:outputLabel value="Livros" for="autores" />
+				<h:outputLabel value="Livros" />
 				<h:selectOneMenu value="#{adminPromosBean.promo.livro.id}"
 					converter="javax.faces.Integer" id="livros" styleClass="form-control">
 					<f:selectItems value="#{adminListaLivrosBean.livros}" 

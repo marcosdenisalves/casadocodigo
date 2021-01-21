@@ -1,5 +1,8 @@
 package br.com.casadocodigo.loja.models;
 
+import javax.json.Json;
+import javax.json.JsonObjectBuilder;
+
 public class Promo {
 	
 	private String titulo;
@@ -19,5 +22,13 @@ public class Promo {
 
 	public void setLivro(Livro livro) {
 		this.livro = livro;
+	}
+
+	public String toJson() {
+		JsonObjectBuilder promo = Json.createObjectBuilder();
+		promo.add("titulo", titulo)
+			.add("livroId", livro.getId());
+		
+		return promo.build().toString();
 	}
 }
