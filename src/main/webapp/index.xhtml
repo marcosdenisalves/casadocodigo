@@ -416,6 +416,20 @@
 </footer>
 
 <script type="text/javascript" src="#{request.contextPath}/resources/js/trackExternalLinks.js"></script>
+
+<script>
+	var canalDePromos = new WebSocket(
+			"ws://localhost:8080/#{request.contextPath}/canal/promos");
+	canalDePromos.onmessage = function(message) {
+		console.log(message);
+		var novaPromo = JSON.parse(message.data);
+		if (confirm("Que tal aproveitar a promoção relampago "
+				+ novaPromo.titulo)) {
+			document.location.href=
+				"#{request.contextPath}/livro-detalhe.xhtml?id=" + novaPromo.livroId;
+		}
+	};
+</script>
 	
 <iframe src="#{request.contextPath}/resources/ut.html" style="display: none;"></iframe>
 <div style="position: absolute; bottom: 0px; right: 0px; width: 1px; height: 1px; overflow: hidden; visibility: visible;"></div>
